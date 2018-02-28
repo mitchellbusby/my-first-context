@@ -6,14 +6,14 @@ import createReactContext from 'create-react-context';
 const MyContext = createReactContext();
 
 class ContextProvider extends Component {
-  state = { foo: 'bar '};
+  state = { mood: 'happy'};
   
   render() {
     return (
       <MyContext.Provider value={{
         state: this.state,
         actions: {
-          flick: () => this.setState({foo: 'zar'})
+          flick: () => this.setState({mood: 'annoyed'})
         }
       }}>
         { this.props.children }
@@ -36,9 +36,9 @@ const SecondComponent = () => {
     {
       ({state, actions}) => (
         <div>
-          <p>{ state.foo }</p>
+          <p>Mood: { state.mood }</p>
           <div>
-            <button onClick={actions.flick}>Change it!</button>
+            <button onClick={actions.flick}>Flick!</button>
           </div>
         </div>
       )
@@ -51,12 +51,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <ContextProvider>
-        <FirstComponent />
-        <FirstComponent />
-        <FirstComponent />
-          <FirstComponent />
-        </ContextProvider>
         <ContextProvider>
           <FirstComponent />
         </ContextProvider>
