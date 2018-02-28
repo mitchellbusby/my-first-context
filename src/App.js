@@ -22,6 +22,14 @@ class ContextProvider extends Component {
   }
 }
 
+const FirstComponent = () => {
+  return (
+    <div>
+      <SecondComponent />
+    </div>
+  )
+}
+
 const SecondComponent = () => {
   return (
     <MyContext.Consumer>
@@ -39,18 +47,16 @@ const SecondComponent = () => {
   )
 }
 
-const FirstComponent = () => {
-  return (
-    <div>
-      <SecondComponent />
-    </div>
-  )
-}
-
 class App extends Component {
   render() {
     return (
       <div className="App">
+        <ContextProvider>
+        <FirstComponent />
+        <FirstComponent />
+        <FirstComponent />
+          <FirstComponent />
+        </ContextProvider>
         <ContextProvider>
           <FirstComponent />
         </ContextProvider>
